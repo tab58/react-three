@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:linkPkg && npm run build:linkApp && npx webpack",
+    "build": "npm run build:linkPkg && npm run build:linkApp && npm run build:react",
+    "build:react": "npx webpack",
     "build:linkPkg": "cd ../build/esm && npm link",
     "build:linkApp": "npm link @tab58/assemble2d",
     "start": "npx webpack serve"

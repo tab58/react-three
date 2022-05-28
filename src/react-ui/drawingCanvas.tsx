@@ -4,7 +4,7 @@ interface SketcherProps {
   onCanvasMount: (canvas: HTMLCanvasElement) => void;
 }
 
-export class SketcherCanvas extends Component<SketcherProps> {
+export class DrawingCanvas extends Component<SketcherProps> {
   public canvasRef: React.RefObject<HTMLCanvasElement>;
   public onCanvasMount: (canvas: HTMLCanvasElement) => void;
 
@@ -22,7 +22,9 @@ export class SketcherCanvas extends Component<SketcherProps> {
 
   public render() {
     return (
-      <canvas id="sketcher" ref={this.canvasRef} />
+      <div className='relative top-0 left-0'>
+        <canvas id="sketcher" ref={this.canvasRef} />
+      </div>
     );
   }
 }
