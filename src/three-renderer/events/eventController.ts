@@ -10,6 +10,8 @@ export class EventController {
   public $mouseout: Observable<Event>;
   public $contextmenu: Observable<Event>;
 
+  public $windowresize: Observable<Event>;
+
   public constructor(canvas: HTMLCanvasElement) {
     this.$click = fromEvent(canvas, 'click');
     this.$dblclick = fromEvent(canvas, 'dblclick');
@@ -19,5 +21,6 @@ export class EventController {
     this.$mouseover = fromEvent(canvas, 'mouseover');
     this.$mouseout = fromEvent(canvas, 'mouseout');
     this.$contextmenu = fromEvent(canvas, 'contextmenu');
+    this.$windowresize = fromEvent(window, 'resize');
   }
 }

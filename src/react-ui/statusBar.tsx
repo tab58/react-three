@@ -68,7 +68,7 @@ const getColors = (type?: AlertType): StatusBarColorSet => {
 
 export const StatusBar = (props: StatusBarProps) => {
   const { text: textColor, background: bgColor } = getColors(props.type);
-  const pClasses = `absolute bottom-0 left-0 w-screen align-middle font-sans rounded-md text-lg indent-2 ${textColor} ${bgColor}`;
+  const pClasses = `py-1 fixed bottom-0 left-0 w-screen align-middle font-sans rounded-md text-lg indent-3 overflow-hidden ${textColor} ${bgColor}`;
   return (
     <p className={pClasses}>{props.children}</p>
   );
