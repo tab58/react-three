@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { executePipeline, worldCamera, worldScene } from './pipeline/inlet';
 
 // const createScene = (renderer: THREE.WebGLRenderer) => {
 //   var geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -34,11 +35,10 @@ export interface Updatable {
   tick(deltaSeconds: number): void;
 }
 
-export class RenderService {
+export class RenderController {
   private _renderer: THREE.WebGLRenderer;
-  private _scene: THREE.Scene;
-  private _perpCamera: THREE.PerspectiveCamera;
-  private _clock: THREE.Clock;
+  private _worldCamera = worldCamera;
+  private _worldScene = worldScene;
 
   public constructor(canvas: HTMLCanvasElement) {
     const renderer = new THREE.WebGLRenderer({
@@ -47,30 +47,14 @@ export class RenderService {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     this._renderer = renderer;
-    this._scene = new THREE.Scene();
-    this._perpCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this._clock = new THREE.Clock();
-
-    this._clock.start();
-    // this._startAnimationLoop();
   }
 
   private _setup() {
+    
   }
 
-  // private _startAnimationLoop() {
-  //   requestAnimationFrame(this._startAnimationLoop);
-  //   const deltaSeconds = this._clock.getDelta();
-
-  //   for (const obj of this._updatableList) {
-  //     obj.tick(deltaSeconds);
-  //   }
-
-  //   this._renderer.render(this._scene, this._perpCamera);
-  // }
-
   public render() {
-    this._renderer.render(this._scene, this._perpCamera);
+    executePipeline(this._renderer);
   }
 
   public setToWindowDimensions() {
@@ -78,8 +62,8 @@ export class RenderService {
     const h = window.innerHeight;
 
     const aspect = w / h;
-    this._perpCamera.aspect = aspect;
-    this._perpCamera.updateProjectionMatrix();
+    this._worldCamera.aspect = aspect;
+    this._worldCamera.updateProjectionMatrix();
 
     this._renderer.setSize(w, h);
   }

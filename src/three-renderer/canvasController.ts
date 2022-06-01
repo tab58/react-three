@@ -1,13 +1,13 @@
 import { EventController } from './events/eventController';
-import { RenderService } from './rendering/controller';
+import { RenderController } from './rendering/controller';
 
 export class CanvasController {
-  public renderService: RenderService;
+  public renderService: RenderController;
   public eventController: EventController;
 
   public constructor(canvas: HTMLCanvasElement) {
     this.eventController = new EventController(canvas);
-    this.renderService = new RenderService(canvas);
+    this.renderService = new RenderController(canvas);
 
     // this.renderService
 
